@@ -1,0 +1,20 @@
+extends ../modal/index.pug
+include ../input/index.pug
+include ../img/index.pug
+
+block content
+    .profile
+        .profile__avatar
+            +img("../../img/ava.jpg","user avatar", 130,130, "profile__avatar-img")
+            span.profile__avatar-text Изменить фото
+        span.profile__title NickName
+        +input("Email", "text", "Email")
+        +input("Логин", "text", "Логин")
+        +input("Имя", "text", "Имя")
+        +input("Телефон", "tel", "Телефон")
+        +input("Пароль", "password", "Пароль")
+        +button(undefined, "profile__btn profile__btn_create") Изменить данные
+        +button(undefined, "profile__btn profile__btn_create") Изменить пароль
+        +button("link", "profile__btn profile__btn_create") Назад
+
+        

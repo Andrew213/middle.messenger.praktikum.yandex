@@ -1,0 +1,8 @@
+mixin input(placeholder = "asd", type = "text", title, className="")
+    if(title)
+        div(class="inputWrapper"+` ${className}`)
+            .text= title 
+            input(type=type class="input" placeholder=placeholder class=className)
+    else
+        input(type=type class="input" placeholder=placeholder class=className)
+    

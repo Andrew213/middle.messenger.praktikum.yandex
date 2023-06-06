@@ -1,0 +1,33 @@
+@import "../fonts/index.less";
+@import "../components/index.less";
+@import "./theme/theme.less";
+@import "./mixins/mixins.less";
+
+li:active,
+li:focus,
+a:active,
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+}
+
+button {
+  border: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+html,
+body {
+  font-family: @font-family;
+  margin: 0;
+  padding: 0;
+  font-size: @font-size-base;
+}
+
+body {
+  background-color: @bg;
+}

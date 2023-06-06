@@ -1,0 +1,9 @@
+extends ../modal/index.pug
+include ../input/index.pug
+block content
+    .password
+        +input("Пароль", "password", "Пароль")
+        +input("Повторите пароль", "password", "Повторите пароль")
+        .password__buttons
+            +button("link", "password__btn password__btn_back") Назад
+            +button("primary", "password__btn password__btn_save") Сохранить
