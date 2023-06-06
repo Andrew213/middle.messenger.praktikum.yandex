@@ -1,0 +1,35 @@
+.navigation {
+  position: fixed;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  &__list {
+    // display: block;
+    .wrapper-mixin();
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    // width: 100%;
+    // max-width: 1000px;
+    margin: 0;
+    padding: 10px 15px;
+    // align-items: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__item {
+    & + & {
+      margin-top: 20px;
+    }
+    width: 100%;
+  }
+
+  &__link {
+    display: block;
+    &-active {
+      background: @gradient-purple;
+      color: #fff;
+    }
+  }
+}
