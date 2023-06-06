@@ -14,7 +14,15 @@
   text-align: center;
   position: relative;
   transition: filter 0.3s ease;
+  font-family: "Montserrat";
   cursor: pointer;
+}
+
+.flex-align-vertical-mixin() {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-mixin() {
@@ -37,6 +45,8 @@
   .button-style-mixin();
   background: #fff;
   color: @purple;
+  text-decoration: none;
+  padding: 7px 16px;
   border-width: 2px;
   border-style: solid;
   border-color: @gradient-purple;
