@@ -6,7 +6,7 @@
 }
 
 .button-style-mixin() {
-  color: #fff;
+  color: @white;
   font-weight: 700;
   text-transform: uppercase;
   padding: 10px 16px;
@@ -43,7 +43,7 @@
 
 .button-mixin(@type) when (@type = "link") {
   .button-style-mixin();
-  background: #fff;
+  background: @white;
   color: @purple;
   text-decoration: none;
   padding: 7px 16px;

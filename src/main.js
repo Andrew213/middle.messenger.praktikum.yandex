@@ -21,7 +21,14 @@ const renderTmp = (tmp, locals) => {
   const navgationTmp = Handlebars.compile(navigation);
   const result = template(locals);
 
-  root.innerHTML = result + navgationTmp();
+  // это лишнее условие уйдёт, когда проавдёт навигация.
+  // продумать, как лучше сделать
+  if (window.location.pathname !== "/chat") {
+    root.innerHTML = `<main>${result + navgationTmp()}</main`;
+  } else {
+    root.innerHTML = result + `<main>${navgationTmp()}</main>`;
+  }
+
   activeBtn(window.location.pathname.replace("/", ""));
 };
 
