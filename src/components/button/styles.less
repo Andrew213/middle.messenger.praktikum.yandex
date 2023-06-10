@@ -1,0 +1,21 @@
+.default {
+  .button-mixin();
+}
+.primary {
+  .button-mixin("primary");
+}
+.link {
+  .button-mixin("link");
+  &:hover {
+    transition: all 0.3s ease;
+    background: @gradient-purple;
+    color: @white;
+  }
+}
+
+.icon {
+  position: absolute;
+  right: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+}
