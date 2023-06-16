@@ -2,8 +2,8 @@ import Handlebars from "handlebars";
 import {
   switchLoadFilePopup,
   switchChangePasswordPopup,
-} from "./pages/profilePage/index.js";
-import activeBtn from "./pages/navigationPage/index.js";
+} from "./pages/profilePage/index.ts";
+import activeBtn from "./pages/navigationPage/index.ts";
 import {
   loginPage,
   registRationPage,
@@ -12,21 +12,21 @@ import {
   notFound,
   navigation,
   noAccessPage,
-} from "./pages/index.js";
+} from "./pages/index.ts";
 
-const renderTmp = (tmp, locals) => {
+const renderTmp = (tmp: string, locals?: Record<string, any>) => {
   const root = document.querySelector("#app");
   const template = Handlebars.compile(tmp);
 
-  const navgationTmp = Handlebars.compile(navigation);
+  const navgationTmp: (a?: any) => string = Handlebars.compile(navigation);
   const result = template(locals);
 
   // это лишнее условие уйдёт, когда проавдёт навигация.
   // продумать, как лучше сделать
   if (window.location.pathname !== "/chat") {
-    root.innerHTML = `<main>${result + navgationTmp()}</main`;
+    (root as any).innerHTML = `<main>${result + navgationTmp()}</main`;
   } else {
-    root.innerHTML = result + `<main>${navgationTmp()}</main>`;
+    (root as any).innerHTML = `${result}<main>${navgationTmp()}</main>`;
   }
 
   activeBtn(window.location.pathname.replace("/", ""));
@@ -67,8 +67,8 @@ document.addEventListener("DOMContentLoaded", () => {
     renderTmp(loginPage);
     const urlData = new URLSearchParams(window.location.search);
     if (
-      urlData.get("login") === user.login &&
-      urlData.get("password") === user.password
+      urlData.get("login") === user.login
+      && urlData.get("password") === user.password
     ) {
       window.location.replace("/chat");
     }

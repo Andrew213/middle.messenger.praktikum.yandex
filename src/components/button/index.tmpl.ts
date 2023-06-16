@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 import getProps from "../../utils/getProps";
 
-export default Handlebars.registerPartial("btn", (p, o) => {
+export default Handlebars.registerPartial("btn", (p, o: any) => {
   const props = getProps(p);
 
   if (p.class.indexOf("link") >= 0) {

@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
-import "../../../../components/index.js";
+import "../../../../components/index";
 
-export default Handlebars.registerPartial("changePassModal", (p, o) => {
+export default Handlebars.registerPartial("changePassModal", () => {
   return `
 {{#> modal}}
 <div class="password">

@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
 import getProps from "../../utils/getProps";
 
-export default Handlebars.registerPartial("input", (p, o) => {
+export default Handlebars.registerPartial("input", (p) => {
   const props = getProps(p);
   let inputEl = `<input  class="input ${p.class || ""}" ${props}/>`;
   if (p?.title) {

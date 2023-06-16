@@ -1,7 +1,7 @@
 import Handlebars from "handlebars";
-import "../../../../components/index.js";
+import "../../../../components/index";
 
-export default Handlebars.registerPartial("loadFileModal", (p, o) => {
+export default Handlebars.registerPartial("loadFileModal", () => {
   return `
 {{#> modal}}
 <div class="file">
