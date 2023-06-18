@@ -54,7 +54,6 @@ const instanceRange = new Range(5, 8);
 
 function allocate(size) {
   const memory = {};
-  const a = "a";
   for (let i = 0; i < size; i++) {
     memory[i] = undefined;
   }
@@ -62,12 +61,13 @@ function allocate(size) {
   return memory;
 }
 
+function checkFreeSpace(memory) {
+  return Object.values(memory).findIndex((el) => el === undefined);
+}
+
 class MyArray {
   constructor(initialSize = 1) {
-    if (
-      Number(initialSize) !== initialSize ||
-      Math.round(initialSize) !== initialSize
-    ) {
+    if (Number(initialSize) !== initialSize || Math.round(initialSize) !== initialSize) {
       throw new Error("Длина массива должна быть целым числом");
     }
 
@@ -76,7 +76,8 @@ class MyArray {
     }
 
     this.size = initialSize;
-    this.memory = allocate(initialSize);
+    this.memory = { 0: "a", 1: "b", 2: undefined, 3: undefined, 4: "d", 5: "f" };
+    // this.memory = allocate(initialSize);
     this.length = 0;
   }
 
@@ -100,21 +101,19 @@ class MyArray {
   // Увеличивает выделенную память вдвое, если необходимо.
   // Возвращает новую длину массива.
   add(value, index) {
-    for (let i = 0; i < this.size - 3; i++) {
-      this.memory[i] = i;
-      this.length += 1;
+    const memoryValues = Object.values(this.memory);
+    const freeSpaceIndex = checkFreeSpace(this.memory);
+
+    if (this.memory[index] === undefined) {
+      this.memory[index] = value;
+      return this.size;
     }
-    return this.length;
-    // for (let i = array.length - 1; i >= position; i--) {
-    //   array[i + 1] = array[i];
-    // }
-    // const result = {};
-    // if (index) {
-    //   this.memory();
-    // }
-    // this.memory[this.size] = value;
-    // this.memory = allocate(this.size + 1);
-    // return this.size;
+    if (freeSpaceIndex >= 0) {
+      // если есть свободное место
+      // сдвигаю массив пока пустое место не станет нужным индексом
+      console.log(`freeSpace `, freeSpaceIndex);
+    }
+    return this.size;
   }
 
   // Удаляет элемент по индексу со сдвигом всех последующих элементов.
@@ -127,5 +126,16 @@ class MyArray {
 
 const array = new MyArray(8);
 
-console.log("add", array.add());
+// поmyarrat.add("v", 4);
 console.log("mem ", array.memory);
+
+const ar = [1, 2, 3, 4, 5];
+const newItem = 6;
+const position = 2;
+
+for (let i = ar.length - 1; i >= position; i--) {
+  ar[i + 1] = ar[i];
+}
+ar[position] = newItem;
+
+console.log(`aa`, ar); // [1, 2, 6, 3, 4, 5]

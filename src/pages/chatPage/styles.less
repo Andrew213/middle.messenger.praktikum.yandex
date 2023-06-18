@@ -1,10 +1,16 @@
+.wrapper {
+  display: flex;
+  flex-flow: column;
+  height: 100vh;
+}
+
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   background-color: @white;
   padding: 0 20px;
-  height: 15%;
+  height: 10vh;
   &__content {
     display: flex;
     align-items: center;
@@ -26,5 +32,126 @@
   }
   &__avatar img {
     .wrapper-mixin(100);
+  }
+}
+
+.main {
+  padding: 10px 0;
+  display: flex;
+  height: 90vh;
+  &__list {
+    .wrapper-mixin();
+    background-color: @white;
+    padding: 0 10px;
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-width: 330px;
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 100%;
+    align-self: center;
+    &::-webkit-scrollbar {
+      display: none;
+    }
+  }
+
+  &__chat {
+    padding: 50px;
+    padding-bottom: 0;
+    margin-left: 50px;
+    border-left: 1px solid @dark-2;
+    width: 100%;
+    overflow: hidden;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+  }
+
+  &__date {
+    display: block;
+    text-align: center;
+    color: @dark-3;
+    margin: 0 auto;
+  }
+
+  &__message {
+    padding: 10px;
+    background-color: @white;
+    margin-bottom: 10px;
+    position: relative;
+    &-from {
+      width: 240px;
+      border-radius: 0% 8px 8px 8px;
+    }
+    &-img {
+      padding-bottom: 30px;
+      position: relative;
+    }
+    &-img img {
+      width: 220px;
+      height: 220px;
+    }
+  }
+
+  &__messageDate {
+    color: @dark-3;
+    font-size: 12px;
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  &__footer {
+    position: sticky;
+    bottom: 0px;
+    width: 100%;
+  }
+
+  &__input {
+    width: 100%;
+    .wrapper-mixin();
+    border-width: 2px;
+  }
+}
+
+.message {
+  margin-bottom: 10px;
+
+  &-to {
+    align-self: flex-end;
+  }
+  &__inner {
+    background-color: @white;
+    display: inline-block;
+    position: relative;
+    padding: 10px;
+    max-width: 340px;
+    &-from {
+      border-radius: 0% 8px 8px 8px;
+    }
+    &-to {
+      border-radius: 8px 0 8px 8px;
+    }
+  }
+
+  &-img img {
+    width: 220px;
+    height: 220px;
+  }
+
+  &__date {
+    color: @dark-3;
+    font-size: 12px;
+    position: absolute;
+    top: 0;
+    &-from {
+      left: -30px;
+    }
+    &-to {
+      right: -30px;
+    }
   }
 }

@@ -1,8 +1,5 @@
 import Handlebars from "handlebars";
-import {
-  switchLoadFilePopup,
-  switchChangePasswordPopup,
-} from "./pages/profilePage/index.ts";
+import { switchLoadFilePopup, switchChangePasswordPopup } from "./pages/profilePage/index.ts";
 import activeBtn from "./pages/navigationPage/index.ts";
 import {
   loginPage,
@@ -20,14 +17,14 @@ const renderTmp = (tmp: string, locals?: Record<string, any>) => {
 
   const navgationTmp: (a?: any) => string = Handlebars.compile(navigation);
   const result = template(locals);
-
+  (root as any).innerHTML = result;
   // это лишнее условие уйдёт, когда проавдёт навигация.
   // продумать, как лучше сделать
-  if (window.location.pathname !== "/chat") {
-    (root as any).innerHTML = `<main>${result + navgationTmp()}</main`;
-  } else {
-    (root as any).innerHTML = `${result}<main>${navgationTmp()}</main>`;
-  }
+  // if (window.location.pathname !== "/chat") {
+  //   (root as any).innerHTML = `<main>${result + navgationTmp()}</main`;
+  // } else {
+  //   (root as any).innerHTML = `${result}<main>${navgationTmp()}</main>`;
+  // }
 
   activeBtn(window.location.pathname.replace("/", ""));
 };
@@ -66,10 +63,7 @@ document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname === "/auth") {
     renderTmp(loginPage);
     const urlData = new URLSearchParams(window.location.search);
-    if (
-      urlData.get("login") === user.login
-      && urlData.get("password") === user.password
-    ) {
+    if (urlData.get("login") === user.login && urlData.get("password") === user.password) {
       window.location.replace("/chat");
     }
     return;

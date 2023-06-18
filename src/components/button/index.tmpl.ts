@@ -1,5 +1,5 @@
 import Handlebars from "handlebars";
-import getProps from "../../utils/getProps";
+import getProps from "../../utils/getProps.ts";
 
 export default Handlebars.registerPartial("btn", (p, o: any) => {
   const props = getProps(p);

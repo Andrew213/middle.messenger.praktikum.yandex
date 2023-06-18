@@ -92,10 +92,7 @@ const namespace = (value: string): Record<string, any> => {
   const result: Record<string, any> = {};
   value
     .split(".")
-    .reduce(
-      (obj: Record<string, any>, key: string) => (obj[key] = obj[key] || {}),
-      result
-    );
+    .reduce((obj: Record<string, any>, key: string) => (obj[key] = obj[key] || {}), result);
 
   return result;
 };
@@ -105,10 +102,8 @@ namespace("a.b.c.d.e"); // {a:{b:{c:{d:{e:{}}}}}}
 // ############################################################
 
 type Nullable<T> = T | null;
-
-const text: Nullable<HTMLDivElement> = document.getElementById(
-  "text"
-) as HTMLDivElement;
+const a = "a";
+const text: Nullable<HTMLDivElement> = document.getElementById("text") as HTMLDivElement;
 // const input: Nullable<HTMLInputElement> = document.getElementById(
 //   "input"
 // ) as HTMLInputElement;
