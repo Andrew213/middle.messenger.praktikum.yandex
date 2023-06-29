@@ -1,11 +1,33 @@
 .input {
   padding-left: 10px;
   border: 1px solid rgba(31, 32, 65, 0.25);
+  outline: 1px solid rgba(31, 32, 65, 0.25);
   padding: 13px 15px;
   border-radius: @border-radius;
-}
 
+  &-error input {
+    border-color: red;
+    outline: 1px solid red;
+  }
+  &__errorMessage {
+    color: red;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    transform: translateY(100%);
+  }
+  &:focus {
+    border-color: @purple;
+    outline: 1px solid @purple;
+    filter: drop-shadow(0px 0px 3px #bc9cff);
+  }
+}
 .text {
   font-weight: 700;
   margin-bottom: 5px;
+}
+
+.container {
+  margin-bottom: 20px;
+  position: relative;
 }
