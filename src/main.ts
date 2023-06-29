@@ -1,33 +1,13 @@
-import Handlebars from "handlebars";
+/* eslint-disable no-param-reassign */
 import { switchLoadFilePopup, switchChangePasswordPopup } from "./pages/profilePage/index.ts";
-import activeBtn from "./pages/navigationPage/index.ts";
-import {
-  loginPage,
-  registRationPage,
-  profilePage,
-  chatPage,
-  notFound,
-  navigation,
-  noAccessPage,
-} from "./pages/index.ts";
-
-const renderTmp = (tmp: string, locals?: Record<string, any>) => {
-  const root = document.querySelector("#app");
-  const template = Handlebars.compile(tmp);
-
-  const navgationTmp: (a?: any) => string = Handlebars.compile(navigation);
-  const result = template(locals);
-  (root as any).innerHTML = result;
-  // это лишнее условие уйдёт, когда проавдёт навигация.
-  // продумать, как лучше сделать
-  // if (window.location.pathname !== "/chat") {
-  //   (root as any).innerHTML = `<main>${result + navgationTmp()}</main`;
-  // } else {
-  //   (root as any).innerHTML = `${result}<main>${navgationTmp()}</main>`;
-  // }
-
-  activeBtn(window.location.pathname.replace("/", ""));
-};
+import Block from "./Block.ts";
+import LoginPage from "./pages/loginPage/index.tmpl.ts";
+import registrationPage from "./pages/registrationPage/index.tmpl.ts";
+import ChatPage from "./pages/chatPage/index.tmpl.ts";
+import ProfilePage from "./pages/profilePage/index.tmpl.ts";
+import navigation from "./pages/navigationPage/index.tmpl.ts";
+import notFoundPage from "./pages/notFoundPage/index.tmpl.ts";
+import noAccessPage from "./pages/noAccessPage/index.tmpl.ts";
 
 const user = {
   email: "supermail@yandex.ru",
@@ -39,29 +19,40 @@ const user = {
   password: "111111",
 };
 
+function renderPage(query: string, block: Block) {
+  const root = document.querySelector(query);
+
+  root?.appendChild(block.getContent());
+  block.dispatchComponentDidMount();
+}
+
+renderPage("#app", navigation);
+
 document.addEventListener("DOMContentLoaded", () => {
   if (window.location.pathname === "/registration") {
-    renderTmp(registRationPage);
+    renderPage("#app", registrationPage);
+
     return;
   }
 
   if (window.location.pathname === "/chat") {
-    renderTmp(chatPage);
+    renderPage("#app", new ChatPage());
+
     return;
   }
 
   if (window.location.pathname === "/noAccess") {
-    renderTmp(noAccessPage);
+    renderPage("#app", noAccessPage);
     return;
   }
 
   if (window.location.pathname === "/") {
-    window.location.replace("/auth");
+    renderPage("#app", LoginPage);
     return;
   }
 
-  if (window.location.pathname === "/auth") {
-    renderTmp(loginPage);
+  if (window.location.pathname === "/login") {
+    renderPage("#app", LoginPage);
     const urlData = new URLSearchParams(window.location.search);
     if (urlData.get("login") === user.login && urlData.get("password") === user.password) {
       window.location.replace("/chat");
@@ -70,11 +61,11 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   if (window.location.pathname === "/profile") {
-    renderTmp(profilePage, user);
-    switchLoadFilePopup();
+    renderPage("#app", ProfilePage);
     switchChangePasswordPopup();
+    switchLoadFilePopup();
     return;
   }
 
-  renderTmp(notFound);
+  renderPage("#app", notFoundPage);
 });

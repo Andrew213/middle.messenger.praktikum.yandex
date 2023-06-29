@@ -4,6 +4,23 @@
 @import "../pages/index.less";
 @import "./mixins/mixins.less";
 
+.tooltip {
+  display: none;
+  padding: 5px;
+  border: 1px solid black;
+}
+
+.tooltip.tooltip_active {
+  display: block;
+  position: absolute;
+}
+
+.left_bottom {
+  position: fixed;
+  bottom: 5px;
+  left: 0;
+}
+
 li:active,
 li:focus,
 a:active,

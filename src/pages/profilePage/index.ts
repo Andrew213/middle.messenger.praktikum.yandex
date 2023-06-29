@@ -2,6 +2,7 @@ export function switchLoadFilePopup() {
   const imageBtn = document.querySelector(".profile__avatar-img") as any;
   imageBtn.addEventListener("click", () => {
     const popup = document.querySelector(".loadFile") as any;
+
     popup.classList.add("popup-active");
   });
 
