@@ -1,0 +1,61 @@
+.chat {
+  padding: 10px;
+  display: flex;
+  position: relative;
+  background-color: transparent;
+  cursor: pointer;
+  border-top: 1px solid @dark-2;
+  transition: background-color 0.3s ease;
+  width: 310px;
+  display: inline-block;
+
+  &:hover {
+    background-color: @dark-2;
+  }
+  &-active {
+    background-color: @dark-2;
+  }
+  img {
+    .wrapper-mixin(100);
+  }
+  &__body {
+    display: flex;
+    align-items: center;
+  }
+  &__bodyText {
+    display: flex;
+    flex-direction: column;
+    margin-left: 15px;
+  }
+  &__innerText {
+    margin-top: 4px;
+  }
+  &__name {
+    font-weight: 700;
+    font-size: 12px;
+    margin-right: auto;
+  }
+
+  &__me {
+    font-weight: 700;
+    font-size: 12px;
+  }
+  &__text {
+    color: @dark-3;
+  }
+  &__day {
+    position: absolute;
+    right: 10px;
+    top: 0;
+    color: @dark-2;
+  }
+  &__newCount {
+    position: absolute;
+    right: 10px;
+    top: 40%;
+    padding: 4px 8px;
+    color: @white;
+    border-radius: 100%;
+    background: @gradient-purple;
+  }
+}

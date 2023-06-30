@@ -1,0 +1,23 @@
+{
+  "compilerOptions": {
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "sourceMap": true,
+    "isolatedModules": true,
+    "target": "ES2016",
+    "allowJs": true,
+    "moduleResolution": "node",
+    "strictNullChecks": true,
+    "useDefineForClassFields": true,
+    "module": "ESNext",
+    "strict": true,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "noEmit": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noImplicitReturns": true,
+    "allowImportingTsExtensions": true,
+  },
+  "include": ["./src/**/*"]
+}
