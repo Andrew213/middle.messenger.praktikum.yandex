@@ -1,4 +1,5 @@
 import Block from "../../Block.ts";
+import router from "../../Router.ts";
 import Button from "../../components/button/index.tmpl.ts";
 import "../../components/index.ts";
 import Input from "../../components/input/index.tmpl.ts";
@@ -109,8 +110,12 @@ export default class ChatPage extends Block {
     this.children.btnProfile = new Button({
       wrapperClassName: "header__btn",
       text: "Профиль",
+      events: {
+        click: () => {
+          router.go("/settings");
+        },
+      },
       classNames: "header__btn",
-      href: "/profile",
       type: "link",
     });
   }

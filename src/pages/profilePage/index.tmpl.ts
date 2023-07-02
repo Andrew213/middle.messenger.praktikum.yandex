@@ -6,6 +6,7 @@ import Modal from "../../components/modal/index.tmpl.ts";
 import loadFilePopup from "./components/loadFileModal/index.tmpl.ts";
 import changePassPopup from "./components/changePassModal/index.tmpl.ts";
 import FormClass from "../../components/form/index.tmpl.ts";
+import router from "../../Router.ts";
 
 const tmp = `
  <div class="profile">
@@ -159,7 +160,11 @@ class ProfilePageClass extends Block<ProfileProps> {
     this.children.buttonBack = new Button({
       type: "link",
       text: "Назад",
-      href: "/chat",
+      events: {
+        click: () => {
+          router.back();
+        },
+      },
       wrapperClassName: "profile__btnWrapper",
       classNames: "profile__btn",
     });
@@ -170,10 +175,10 @@ class ProfilePageClass extends Block<ProfileProps> {
   }
 }
 
-const ProfilePage = new Modal({
+const profilePage = new Modal({
   children: new ProfilePageClass({ display_name: "NickName" }),
   loadfileModal: loadFilePopup,
   changePassModal: changePassPopup,
 });
 
-export default ProfilePage;
+export default profilePage;

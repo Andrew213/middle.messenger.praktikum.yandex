@@ -1,4 +1,5 @@
 import Block from "../../Block.ts";
+import router from "../../Router.ts";
 import Button from "../../components/button/index.tmpl.ts";
 import FormClass from "../../components/form/index.tmpl.ts";
 import "../../components/index.ts";
@@ -25,6 +26,9 @@ class LoginPage extends Block {
 
   protected init(): void {
     this.children.form = new FormClass({
+      onSuccess() {
+        router.go("/messenger");
+      },
       wrapperClassName: "login__form",
       class: "login__form",
       inputs: [
@@ -84,7 +88,11 @@ class LoginPage extends Block {
     this.children.btnCreate = new Button({
       type: "link",
       text: "Создать",
-      href: "/registration",
+      events: {
+        click: () => {
+          router.go("/sing-up");
+        },
+      },
       classNames: "login__btn login__btn_create",
     });
   }

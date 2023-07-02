@@ -1,4 +1,5 @@
 import Block from "../../Block.ts";
+import router from "../../Router.ts";
 import Button from "../../components/button/index.tmpl.ts";
 import FormClass from "../../components/form/index.tmpl.ts";
 import "../../components/index.ts";
@@ -17,37 +18,6 @@ const tmp = `
        {{{btnEnter}}}
     </div>
 </div>
-`;
-
-const foo = `
-{{#>modal}}
-<div class="registration">
-    <span class="registration__title">
-        Регистрация аккаунта
-    </span>
-    <form action="#" class="registration__form">
-        {{>input placeholder="Email" title="Email" name="email" }}
-        {{>input placeholder="Логин" title="Логин" name="login" }}
-        {{>input placeholder="Имя" name="first_name" title="Имя" }}
-        {{>input placeholder="Фамилия"  name="second_name" title="Фамилия" }}
-        {{>input placeholder="Имя в чате" name="display_name" title="Имя в чате" }} 
-        {{>input placeholder="Телефон" name="phone" type="tel" title="Телефон" }}
-        {{>input placeholder="Пароль" name="password" type="password" title="Пароль" }}
-        {{>input placeholder="Повторите пароль" name="password" type="password" title="Повторите пароль" }}
-        {{#>btn arrow=true type='submit' class="primary registration__btn registration__btn_login"}}
-        Зарегистрироваться
-        {{/btn}}
-    </form>
-    <div class="registration__footer">
-        <span class="registration__text">
-            Есть аккаунт?
-        </span>
-        {{#>btn href="/" class="link registration__btn registration__btn_enter"}}
-            Войти
-        {{/btn}}
-    </div>
-</div>
-{{/modal}}
 `;
 
 interface RegistrationIntarface {
@@ -207,7 +177,11 @@ class RegistrationPage extends Block<RegistrationIntarface> {
       text: "Войти",
       wrapperClassName: "registration__btn",
       classNames: "registration__btn registration__btn_enter",
-      href: "/login",
+      events: {
+        click: () => {
+          router.back();
+        },
+      },
       buttonProps: {
         type: "submit",
       },

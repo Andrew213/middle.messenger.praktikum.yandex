@@ -16,6 +16,7 @@ interface FormProps {
   inputs: InputProps[];
   btnSubmit?: Block<ButtonProps>;
   wrapperClassName: string;
+  onSuccess?: () => void;
 }
 
 export default class FormClass extends Block {
@@ -69,6 +70,7 @@ export default class FormClass extends Block {
         data.forEach((value, key) => {
           console.log(`${key}: ${value}`);
         });
+        this.props.onSuccess && this.props.onSuccess();
       }
     }
   }
